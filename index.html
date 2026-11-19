@@ -996,6 +996,121 @@
     table.eval-tbl, table.eval-sum, .eval-conclusion{ break-inside:avoid; }
   }
 
+
+  /* ================= v2: LAYOUT RESPONSIVE ================= */
+  html, body{ overflow-x:hidden; }
+  .app{ grid-template-columns:200px minmax(0,1fr) 260px; max-width:1440px; width:100%; }
+  .topbar{ padding:14px 28px; gap:12px 16px; flex-wrap:wrap; min-width:0; }
+  .brand{ min-width:0; }
+  .topbar-meta{ gap:10px; flex-wrap:wrap; justify-content:flex-end; min-width:0; }
+  .topbar-meta .btn{ margin:0 !important; }
+  .badge-session{ white-space:nowrap; }
+  .lbl-short{ display:none; }
+  .t-short{ display:none; }
+  .app{ grid-template-rows:auto 1fr; align-content:start; }
+  main{ min-width:0; padding:28px 32px 72px; }
+  .rightnav, .sidebar{ height:auto; max-height:100vh; overflow-y:auto; scrollbar-width:thin; }
+  .patient-row{ flex-wrap:wrap; gap:10px 16px; }
+  .patient-meta{ min-width:0; }
+  .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.history-table{ min-width:760px; }
+  table.history-table td, table.history-table th{ white-space:nowrap; }
+  table.history-table th:first-child, table.history-table td:first-child{ position:sticky; left:0; background:var(--surface); z-index:1; }
+  .hist-sec{ margin:18px 0 8px; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--blue-deep); font-weight:700; }
+  .detail-grid.dg-full{ grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
+
+  /* Estadísticas: tarjetas clicables */
+  .stat-summary{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; margin-bottom:18px; }
+  button.stat-card{ font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:2px; min-width:0; }
+  button.stat-card:hover{ border-color:var(--blue); }
+  button.stat-card.sel{ border-color:var(--blue-deep); box-shadow:0 0 0 3px var(--blue-pale); background:var(--blue-pale); }
+  button.stat-card:focus-visible{ outline:3px solid var(--blue); outline-offset:2px; }
+  .stat-card .s-value{ font-size:1.45rem; }
+  .stat-card .s-delta.neutral{ background:var(--blue-pale); color:var(--blue-deep); }
+  button.stat-card.sel .s-delta.neutral{ background:var(--surface); }
+  .stat-card .s-spark{ margin-top:6px; min-height:30px; }
+
+  /* Botones del reporte */
+  .report-doc-foot{ flex-wrap:wrap; }
+  .report-doc-foot .spacer{ flex:1 1 auto; }
+
+  /* ---- Tablet/celular: una columna, menú inferior ---- */
+  @media (max-width:1000px){
+    .app{ display:block; max-width:100%; }
+    .topbar{ padding:10px 16px; flex-wrap:nowrap; }
+    .brand-divider, .brand-copy{ display:none; }
+    .brand-logo{ height:40px; }
+    .badge-session, .avatar{ display:none; }
+    .topbar-meta .btn{ padding:7px 11px !important; font-size:0.78rem !important; }
+    .lbl-long{ display:none; }
+    .lbl-short{ display:inline; }
+    .rightnav{
+      position:fixed; left:0; right:0; bottom:0; top:auto; z-index:50;
+      display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:2px;
+      height:auto; max-height:none; overflow:visible;
+      padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px)); border-top:1px solid var(--line); border-right:none; border-bottom:none;
+      background:var(--surface); box-shadow:0 -6px 20px -10px rgba(43,51,46,0.25);
+    }
+    .rightnav-label{ display:none; }
+    .tab-btn{
+      flex-direction:column; justify-content:center; align-items:center; gap:3px; text-align:center;
+      padding:7px 2px; font-size:0.66rem; line-height:1.15; border-left:none !important; border-bottom:none !important; border-radius:10px; width:auto; white-space:normal;
+    }
+    .tab-btn svg{ width:20px; height:20px; }
+    .tab-btn.active{ background:var(--blue-pale); }
+    .t-long{ display:none; } .t-short{ display:inline; }
+    .sidebar{
+      position:static; max-height:none; overflow:visible; border:none; padding:12px 16px 0; height:auto;
+    }
+    .patient-card{ padding:12px 14px; margin-bottom:10px; }
+    .patient-card .patient-id{ display:none; }
+    #rail-registro, #rail-stats{ display:none !important; }
+    .sidebar-rail .rail-label{ margin-bottom:6px; }
+    .sidebar-rail .tape{ display:flex; flex-wrap:wrap; gap:8px; padding:0; }
+    .sidebar-rail .tape::before{ display:none; }
+    .sidebar-rail .rail-btn{ margin-left:0; padding:7px 13px; border:1px solid var(--line); border-radius:99px; background:var(--surface); width:auto; }
+    .sidebar-rail .rail-btn .dot{ display:none; }
+    .sidebar-rail .rail-btn span span{ display:none; }
+    .sidebar-rail .rail-btn.active{ background:var(--blue-pale); border-color:var(--blue-deep); }
+    main{ padding:18px 16px calc(96px + env(safe-area-inset-bottom,0px)); }
+    .intro{ margin-bottom:20px; }
+    .body-layout{ grid-template-columns:minmax(0,1fr); }
+    section.card, .chart-card, .meas-table-wrap{ min-width:0; }
+    .card, .chart-card{ padding-left:16px; padding-right:16px; }
+    .filter-bar{ flex-wrap:wrap; }
+    .filter-bar .field{ flex:1 1 140px; min-width:0; }
+    .report-controls{ flex-wrap:wrap; }
+    .report-controls .field{ flex:1 1 200px; min-width:0; }
+    .eval-page{ padding:18px 14px 16px; }
+    .eval-head{ flex-wrap:wrap; }
+    .eval-head h1{ font-size:1rem; text-align:left; }
+    .eval-head .sub{ text-align:left; }
+    table.eval-tbl th, table.eval-tbl td{ padding:5px 5px; }
+    table.eval-tbl{ font-size:0.76rem; }
+    table.eval-tbl td.v, table.eval-tbl th.v{ width:auto; }
+    table.eval-tbl td.l{ font-size:0.68rem; }
+    .eval-sum-wrap{ overflow-x:auto; }
+    .report-doc-foot{ padding:14px 16px 20px; justify-content:stretch; }
+    .report-doc-foot .btn{ flex:1 1 140px; }
+    .report-doc-foot .spacer{ display:none; }
+  }
+  @media (max-width:560px){
+    .stat-summary{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .stat-card .s-value{ font-size:1.2rem; }
+    .patient-row{ padding:14px; }
+    .patient-info{ min-width:0; flex-basis:calc(100% - 70px); }
+    .patient-meta{ align-items:flex-start; text-align:left; }
+    .detail-actions .btn{ flex:1 1 100%; }
+    .detail-grid.dg-full{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .login-card{ padding:26px 20px; }
+    table.eval-sum th:nth-child(5), table.eval-sum td:nth-child(5){ display:none; }
+    table.eval-sum{ font-size:0.78rem; } table.eval-sum td, table.eval-sum th{ padding:6px 4px; }
+  }
+  @media (min-width:1001px) and (max-width:1180px){
+    .app{ grid-template-columns:180px minmax(0,1fr) 230px; }
+    main{ padding:24px 22px 64px; }
+  }
+
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     *{ transition:none !important; }
@@ -1058,8 +1173,8 @@
     </div>
     <div class="topbar-meta">
       <span class="badge-session" id="badge-hoy">—</span>
-      <button class="btn btn-ghost" id="btn-cambiar-pw" type="button" style="padding:8px 14px; font-size:0.8rem; margin-right:8px;">Cambiar contraseña</button>
-      <button class="btn btn-ghost" id="btn-logout" type="button" style="padding:8px 14px; font-size:0.8rem;">Cerrar sesión</button>
+      <button class="btn btn-ghost" id="btn-cambiar-pw" type="button" style="padding:8px 14px; font-size:0.8rem;"><span class="lbl-long">Cambiar contraseña</span><span class="lbl-short">Contraseña</span></button>
+      <button class="btn btn-ghost" id="btn-logout" type="button" style="padding:8px 14px; font-size:0.8rem;"><span class="lbl-long">Cerrar sesión</span><span class="lbl-short">Salir</span></button>
       <div class="avatar" title="Jéssica Castro">JC</div>
     </div>
   </header>
@@ -1072,17 +1187,13 @@
       Pacientes
     </button>
     <button class="tab-btn" data-view="registro">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      Nueva medición
-    </button>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="t-long">Nueva medición</span><span class="t-short">Nueva</span></button>
     <button class="tab-btn" data-view="historial">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       Historial
     </button>
     <button class="tab-btn" data-view="stats">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      Estadísticas de avance
-    </button>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="t-long">Estadísticas de avance</span><span class="t-short">Avance</span></button>
     <button class="tab-btn" data-view="reportes">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5M9 13h6M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       Reportes
@@ -1157,18 +1268,6 @@
     </div>
 
     <!-- Selector: métrica (vista Estadísticas) -->
-    <div class="sidebar-rail" id="rail-stats" hidden>
-      <span class="rail-label">Métrica a graficar</span>
-
-      <nav class="tape" id="stats-metrics">
-        <button class="rail-btn active" data-metric="peso"><span class="dot"></span><span><strong>Peso corporal</strong><span>Kilogramos</span></span></button>
-        <button class="rail-btn" data-metric="imc"><span class="dot"></span><span><strong>IMC</strong><span>Índice de masa corporal</span></span></button>
-        <button class="rail-btn" data-metric="cintura"><span class="dot"></span><span><strong>Cintura</strong><span>Centímetros</span></span></button>
-        <button class="rail-btn" data-metric="icc"><span class="dot"></span><span><strong>Índice cintura-cadera</strong><span>Relación C/C</span></span></button>
-        <button class="rail-btn" data-metric="pliegues"><span class="dot"></span><span><strong>Pliegues cutáneos</strong><span>Suma de 7 sitios, mm</span></span></button>
-      </nav>
-    </div>
-
     <!-- Selector: tipo de reporte (vista Reportes) -->
     <div class="sidebar-rail" id="rail-reportes" hidden>
       <span class="rail-label">Tipo de reporte</span>
@@ -1619,18 +1718,7 @@
 
       <div class="table-wrap">
         <table class="history-table" id="hist-table">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Peso</th>
-              <th>IMC</th>
-              <th>Cintura</th>
-              <th>Cadera</th>
-              <th>ICC</th>
-              <th>Estado</th>
-              <th></th>
-            </tr>
-          </thead>
+          <thead><tr><th>Fecha</th><th>Peso</th><th>IMC</th><th>% Grasa</th><th>Kg grasa</th><th>Kg magra</th><th>Músculo</th><th>Cintura</th><th>Cadera</th><th>Σ 6 pliegues</th><th></th></tr></thead>
           <tbody id="hist-tbody"><!-- filas generadas por JS --></tbody>
         </table>
       </div>
@@ -1640,15 +1728,8 @@
           <div><span class="eyebrow">Ficha del <span id="detail-fecha"></span></span><h2>Detalle de la consulta</h2></div>
           <span class="hint" id="detail-estado-hint"></span>
         </div>
-        <div class="detail-grid">
-          <div class="detail-item"><span class="d-label">Peso</span><span class="d-value" id="detail-peso"></span></div>
-          <div class="detail-item"><span class="d-label">IMC</span><span class="d-value" id="detail-imc"></span></div>
-          <div class="detail-item"><span class="d-label">Cintura</span><span class="d-value" id="detail-cintura"></span></div>
-          <div class="detail-item"><span class="d-label">Cadera</span><span class="d-value" id="detail-cadera"></span></div>
-          <div class="detail-item"><span class="d-label">ICC</span><span class="d-value" id="detail-icc"></span></div>
-          <div class="detail-item"><span class="d-label">Suma pliegues</span><span class="d-value" id="detail-pliegues"></span></div>
-        </div>
-        <span class="d-label" style="margin-bottom:8px; display:block;">Observaciones</span>
+        <div id="detail-full"></div>
+        <span class="d-label" style="margin:18px 0 8px; display:block;">Observaciones</span>
         <p class="detail-obs" id="detail-obs"></p>
         <div class="report-doc-foot" style="padding:0; margin-top:20px; border-top:none;">
           <div class="detail-actions">
@@ -1667,7 +1748,7 @@
   <div class="view" id="view-stats">
     <div class="intro">
       <h2>Estadísticas de avance</h2>
-      <p>Comparación entre la primera consulta registrada y la más reciente. Elegí una métrica en el panel lateral para ver su evolución.</p>
+      <p>Cada tarjeta compara la primera consulta con la más reciente. Tocá una tarjeta para ver su evolución en el gráfico.</p>
     </div>
 
     <div class="patient-search-wrap">
@@ -2352,7 +2433,7 @@
   // Nombre completo, e iniciales, calculados siempre desde nombre+apellido separados
   function nombreCompleto(p){ return `${p.nombre} ${p.apellido}`; }
   function inicialesDe(p){ return `${(p.nombre[0]||'')}${(p.apellido[0]||'')}`.toUpperCase(); }
-  function hoyISO(){ return new Date().toISOString().slice(0,10); }
+  function hoyISO(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
   // Edad en años cumplidos a una fecha de referencia (por defecto, hoy)
   function edadDesdeFecha(nacimientoISO, referenciaISO){
     if (!nacimientoISO) return null;
@@ -2447,7 +2528,6 @@
   const railPacientes = document.getElementById('rail-pacientes');
   const railRegistro = document.getElementById('rail-registro');
   const railHistorial = document.getElementById('rail-historial');
-  const railStats = document.getElementById('rail-stats');
   const railReportes = document.getElementById('rail-reportes');
 
   function activarTab(target){
@@ -2456,7 +2536,6 @@
     railPacientes.hidden = target !== 'pacientes';
     railRegistro.hidden = target !== 'registro';
     railHistorial.hidden = target !== 'historial';
-    railStats.hidden = target !== 'stats';
     railReportes.hidden = target !== 'reportes';
     if (target === 'pacientes') renderPacientes();
     if (target === 'historial') renderHistorial();
@@ -2510,23 +2589,28 @@
 
     histTbody.innerHTML = '';
     if (filas.length === 0){
-      histTbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--ink-soft); padding:24px;">No hay consultas registradas en este rango.</td></tr>`;
+      histTbody.innerHTML = `<tr><td colspan="11" style="text-align:center; color:var(--ink-soft); padding:24px;">No hay consultas registradas en este rango.</td></tr>`;
       document.getElementById('hist-detail').hidden = true;
       return;
     }
 
+    const nz = (v, d, u) => v == null ? '—' : v.toFixed(d) + (u || '');
     filas.forEach(r => {
-      const imc = calcIMC(r.peso, activo().tallaM).toFixed(1);
-      const icc = calcICC(r.cintura, r.cadera).toFixed(2);
+      const raw = r.raw || {};
+      const g = k => raw[k] != null ? Number(raw[k]) : null;
+      const imc = calcIMC(r.peso, activo().tallaM);
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${fmtFechaCorta(r.fecha)} · ${r.fecha.slice(0,4)}</td>
-        <td class="num">${r.peso.toFixed(1)} kg</td>
-        <td class="num">${imc}</td>
-        <td class="num">${r.cintura} cm</td>
-        <td class="num">${r.cadera} cm</td>
-        <td class="num">${icc}</td>
-        <td><span class="status-pill ${r.estado === 'saved' ? 'saved' : 'progress'}">${r.estado === 'saved' ? 'Guardada' : 'En curso'}</span></td>
+        <td class="num">${nz(r.peso,1,' kg')}</td>
+        <td class="num">${nz(imc,1)}</td>
+        <td class="num">${nz(g('pct_graso'),1,' %')}</td>
+        <td class="num">${nz(g('kg_grasa'),1,' kg')}</td>
+        <td class="num">${nz(g('kg_magra'),1,' kg')}</td>
+        <td class="num">${nz(g('musc_martin'),1,' kg')}</td>
+        <td class="num">${nz(g('cintura'),1,' cm')}</td>
+        <td class="num">${nz(g('cadera'),1,' cm')}</td>
+        <td class="num">${nz(sumaPliegues(raw),0,' mm')}</td>
         <td><button class="row-action" type="button">Ver detalle →</button></td>
       `;
       tr.addEventListener('click', () => mostrarDetalle(r, tr));
@@ -2544,13 +2628,26 @@
     detalleActual = { paciente: activo(), registro: r };
     document.getElementById('detail-fecha').textContent = fmtFechaLarga(r.fecha);
     document.getElementById('detail-estado-hint').textContent = r.estado === 'saved' ? 'Consulta guardada' : 'Consulta en curso';
-    document.getElementById('detail-peso').textContent = r.peso.toFixed(1) + ' kg';
-    document.getElementById('detail-imc').textContent = calcIMC(r.peso, activo().tallaM).toFixed(1);
-    document.getElementById('detail-cintura').textContent = r.cintura + ' cm';
-    document.getElementById('detail-cadera').textContent = r.cadera + ' cm';
-    document.getElementById('detail-icc').textContent = calcICC(r.cintura, r.cadera).toFixed(2);
-    document.getElementById('detail-pliegues').textContent = r.pliegues ? r.pliegues + ' mm' : '— pendiente';
-    document.getElementById('detail-obs').textContent = r.obs;
+    const raw = r.raw || {};
+    const iccV = (raw.cintura && raw.cadera) ? calcICC(Number(raw.cintura), Number(raw.cadera)) : null;
+    const bloques = [{ t:'Índices', items:[
+        ['Peso', r.peso != null ? r.peso.toFixed(1) + ' kg' : null],
+        ['IMC', r.peso != null ? calcIMC(r.peso, activo().tallaM).toFixed(1) : null],
+        ['ICC (cintura/cadera)', iccV != null ? iccV.toFixed(2) : null],
+        ['Sumatoria 6 pliegues', sumaPliegues(raw) != null ? Math.round(sumaPliegues(raw)) + ' mm' : null] ] }];
+    const extra = [
+      ['Composición corporal', [['% Grasa','pct_graso',1,' %'],['Kg grasa','kg_grasa',1,' kg'],['Kg masa magra','kg_magra',1,' kg'],['Agua corporal','agua_pct',1,' %']]],
+      ['Masa muscular', [['Músculo Martin','musc_martin',1,' kg'],['% Martin','pct_musc_martin',1,' %'],['Músculo Lee','musc_lee',1,' kg'],['% Lee','pct_musc_lee',1,' %'],['Esqueleto','esqueleto',1,' kg']]],
+      ['Medidas básicas', [['Talla','talla',1,' cm'],['Talla sentada','talla_sentada',1,' cm']]],
+    ];
+    extra.forEach(([t, defs]) => bloques.push({ t, items: defs.map(([l,k,d,u]) => [l, raw[k] != null ? Number(raw[k]).toFixed(d) + u : null]) }));
+    EVAL_GRUPOS.slice(3).forEach(gr => bloques.push({ t: gr.t, items: gr.filas.map(f => [f.l, raw[f.k] != null ? Number(raw[f.k]).toFixed(f.d) + (gr.u || '') : null]) }));
+    document.getElementById('detail-full').innerHTML = bloques.map(b => {
+      const its = b.items.filter(i => i[1] != null);
+      if (!its.length) return '';
+      return `<div class="hist-sec">${b.t}</div><div class="detail-grid dg-full">${its.map(i => `<div class="detail-item"><span class="d-label">${i[0]}</span><span class="d-value">${i[1]}</span></div>`).join('')}</div>`;
+    }).join('');
+    document.getElementById('detail-obs').textContent = r.obs || '—';
     panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }
 
@@ -2603,32 +2700,29 @@
     if (!detalleActual) return;
     const portal = document.getElementById('quick-report-portal');
     portal.innerHTML = buildReporteFechaDoc(detalleActual.paciente, detalleActual.registro, 'quick-report-printable', '');
-    window.print();
+    const nom = nombreCompleto(detalleActual.paciente) + '_Consulta ' + detalleActual.registro.fecha.split('-').reverse().join('-');
+    descargarPDF('quick-report-printable', nom, document.getElementById('detail-download-pdf'));
   });
 
-  // ---------------- ESTADÍSTICAS: chips de resumen + gráfico ----------------
-  const metricBtns = document.querySelectorAll('#stats-metrics .rail-btn');
+  // ---------------- ESTADÍSTICAS: tarjetas de indicadores + gráfico ----------------
+  const rawNum = (r, k) => (r.raw && r.raw[k] != null) ? Number(r.raw[k]) : null;
   const metricConfig = {
-    peso:      { label:'Peso corporal',        unit:'kg', get:r => r.peso,                                        goodDirection:'down', fmt:v=>v.toFixed(1) },
-    imc:       { label:'IMC',                  unit:'',   get:r => calcIMC(r.peso, activo().tallaM),               goodDirection:'down', fmt:v=>v.toFixed(1) },
-    cintura:   { label:'Cintura',               unit:'cm', get:r => r.cintura,                                     goodDirection:'down', fmt:v=>v.toFixed(1) },
-    icc:       { label:'Índice cintura-cadera', unit:'',   get:r => calcICC(r.cintura, r.cadera),                  goodDirection:'down', fmt:v=>v.toFixed(2) },
-    pliegues:  { label:'Pliegues cutáneos',     unit:'mm', get:r => r.pliegues,                                    goodDirection:'down', fmt:v=>v.toFixed(0) },
+    peso:        { label:'Peso corporal',          unit:'kg', dec:1, get:r => r.peso },
+    imc:         { label:'IMC',                    unit:'',   dec:1, get:r => r.peso != null ? calcIMC(r.peso, activo().tallaM) : null },
+    pct_graso:   { label:'% Grasa',                unit:'%',  dec:1, get:r => rawNum(r,'pct_graso') },
+    kg_grasa:    { label:'Masa grasa',             unit:'kg', dec:1, get:r => rawNum(r,'kg_grasa') },
+    kg_magra:    { label:'Masa magra',             unit:'kg', dec:1, get:r => rawNum(r,'kg_magra') },
+    musc_martin: { label:'Músculo (Martin)',       unit:'kg', dec:1, get:r => rawNum(r,'musc_martin') },
+    suma6:       { label:'Sumatoria de 6 pliegues',unit:'mm', dec:0, get:r => r.raw ? sumaPliegues(r.raw) : null },
+    cintura:     { label:'Cintura mínima',         unit:'cm', dec:1, get:r => rawNum(r,'cintura') },
+    cadera:      { label:'Cadera',                 unit:'cm', dec:1, get:r => rawNum(r,'cadera') },
+    icc:         { label:'Índice cintura-cadera',  unit:'',   dec:2, get:r => (rawNum(r,'cintura') && rawNum(r,'cadera')) ? rawNum(r,'cintura')/rawNum(r,'cadera') : null },
   };
+  Object.values(metricConfig).forEach(c => { c.fmt = v => v.toFixed(c.dec); });
   let metricaActual = 'peso';
 
-  metricBtns.forEach(b => b.addEventListener('click', () => {
-    metricBtns.forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    metricaActual = b.dataset.metric;
-    renderStats();
-  }));
-
   function renderStats(){
-    const cfg = metricConfig[metricaActual];
     const hist = activo().historial;
-    const datos = hist.filter(r => cfg.get(r) !== null && cfg.get(r) !== undefined);
-
     const summary = document.getElementById('stat-summary');
     const chartCard = document.getElementById('chart-card-wrap');
     const emptyState = document.getElementById('stats-empty');
@@ -2641,44 +2735,42 @@
       emptyState.textContent = `Todavía no hay mediciones registradas para ${nombreCompleto(activo())}. Cargá una desde "Nueva medición".`;
       return;
     }
-    if (hist.length === 1){
-      summary.innerHTML = '';
+    if (!hist.some(r => { const v = metricConfig[metricaActual].get(r); return v != null && !isNaN(v); })) metricaActual = 'peso';
+
+    summary.innerHTML = Object.entries(metricConfig).map(([key, conf]) => {
+      const serie = hist.map(r => conf.get(r)).filter(v => v != null && !isNaN(v));
+      if (!serie.length) return '';
+      const v1 = serie[serie.length-1], v0 = serie[0];
+      const delta = v1 - v0;
+      const dTxt = serie.length > 1
+        ? `<span class="s-delta neutral">${delta>0?'↑':delta<0?'↓':'='} ${conf.fmt(Math.abs(delta))}${conf.unit?' '+conf.unit:''} desde la 1.ª</span>`
+        : `<span class="s-delta neutral">Primera consulta</span>`;
+      return `<button type="button" class="stat-card${key===metricaActual?' sel':''}" data-metric="${key}">
+          <span class="s-label">${conf.label}</span>
+          <span class="s-value">${conf.fmt(v1)}${conf.unit?' '+conf.unit:''}</span>
+          ${dTxt}
+          <span class="s-spark">${serie.length>1 ? sparkline(serie) : ''}</span>
+        </button>`;
+    }).join('');
+    summary.querySelectorAll('.stat-card').forEach(c => c.addEventListener('click', () => {
+      metricaActual = c.dataset.metric; renderStats();
+      chartCard.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }));
+
+    const cfg = metricConfig[metricaActual];
+    const datos = hist.filter(r => { const v = cfg.get(r); return v !== null && v !== undefined && !isNaN(v); });
+    document.getElementById('chart-title').textContent = cfg.label;
+    if (datos.length < 2){
       chartCard.hidden = true;
       emptyState.hidden = false;
-      emptyState.textContent = `${nombreCompleto(activo())} tiene una sola consulta registrada. Se necesitan al menos dos para calcular una tendencia.`;
+      emptyState.textContent = hist.length < 2
+        ? `${nombreCompleto(activo())} tiene una sola consulta registrada. Se necesitan al menos dos para ver la evolución.`
+        : `Para graficar "${cfg.label}" hacen falta al menos dos consultas con ese dato.`;
       return;
     }
     chartCard.hidden = false;
     emptyState.hidden = true;
-
-    // ---- chips de resumen (peso, IMC, cintura, ICC) ----
-    const primerConsulta = hist[0];
-    const ultimaConsulta = hist[hist.length-1];
-    const chipsConfig = [
-      { key:'peso', label:'Peso corporal', unit:' kg' },
-      { key:'imc', label:'IMC', unit:'' },
-      { key:'cintura', label:'Cintura', unit:' cm' },
-      { key:'icc', label:'Índice cintura-cadera', unit:'' },
-    ];
-    summary.innerHTML = chipsConfig.map(c => {
-      const conf = metricConfig[c.key];
-      const v0 = conf.get(primerConsulta);
-      const v1 = conf.get(ultimaConsulta);
-      const delta = v1 - v0;
-      const bueno = conf.goodDirection === 'down' ? delta <= 0 : delta >= 0;
-      const flecha = delta <= 0 ? '↓' : '↑';
-      return `
-        <div class="stat-card">
-          <span class="s-label">${c.label} actual</span>
-          <span class="s-value">${conf.fmt(v1)}${c.unit}</span>
-          <span class="s-delta ${bueno ? 'down' : 'up'}">${flecha} ${conf.fmt(Math.abs(delta))}${c.unit} desde la 1.ª consulta</span>
-        </div>`;
-    }).join('');
-
-    // ---- gráfico de línea SVG ----
-    document.getElementById('chart-title').textContent = cfg.label;
-    const wrap = document.getElementById('chart-svg-wrap');
-    wrap.innerHTML = buildLineChartSVG(datos, cfg);
+    document.getElementById('chart-svg-wrap').innerHTML = buildLineChartSVG(datos, cfg);
   }
 
   function buildLineChartSVG(datos, cfg){
@@ -2705,7 +2797,7 @@
     const dots = points.map((p,i) => {
       const isLast = i === points.length - 1;
       const fill = isLast ? '#8A9C27' : '#2EA8D3';
-      const label = cfg.fmt(cfg.get(p.r)) + (cfg.unit ? cfg.unit : '');
+      const label = cfg.fmt(cfg.get(p.r)) + (cfg.unit ? ' ' + cfg.unit : '');
       return `
         <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isLast?6:4.5}" fill="${fill}" stroke="#fff" stroke-width="2"/>
         <text x="${p.x.toFixed(1)}" y="${(p.y-14).toFixed(1)}" text-anchor="middle" class="chart-point-label" font-weight="600">${label}</text>
@@ -2728,6 +2820,71 @@
       </svg>
     `;
   }
+
+
+  // ---------------- PDF E IMPRESIÓN DE REPORTES ----------------
+  function nombreArchivoReporte(){
+    const tipo = (document.querySelector('#reportes-tipo .rail-btn.active') || {dataset:{tipo:'eval'}}).dataset.tipo;
+    const mapa = { eval:['rep-paciente-eval','Evaluación Antropométrica'], fecha:['rep-paciente','Resultados de consulta'],
+                   avance:['rep-paciente-avance','Reporte de avance'], comparar:['rep-paciente-comparar','Comparación de fechas'] };
+    const [selId, etiqueta] = mapa[tipo] || mapa.eval;
+    const p = pacientesData[document.getElementById(selId).value];
+    return (p ? nombreCompleto(p) : 'Paciente') + '_' + etiqueta;
+  }
+  function cargarHtml2pdf(){
+    if (window.html2pdf) return Promise.resolve();
+    return new Promise((ok, fallo) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js';
+      s.onload = ok; s.onerror = () => fallo(new Error('No se pudo cargar el generador de PDF'));
+      document.head.appendChild(s);
+    });
+  }
+  async function descargarPDF(elId, nombre, btn){
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const txt = btn ? btn.textContent : '';
+    if (btn){ btn.disabled = true; btn.textContent = 'Generando PDF…'; }
+    try {
+      await cargarHtml2pdf();
+      const clone = el.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.querySelectorAll('.report-doc-foot, .eval-edit-hint').forEach(x => x.remove());
+      clone.querySelectorAll('[contenteditable]').forEach(x => x.removeAttribute('contenteditable'));
+      clone.style.cssText = 'width:740px; max-width:740px; margin:0; border:none; border-radius:0; box-shadow:none; position:static; background:#fff;';
+      const holder = document.createElement('div');
+      holder.style.cssText = 'position:absolute; left:0; top:0; width:740px; background:#fff; z-index:-1;';
+      holder.appendChild(clone);
+      document.body.appendChild(holder);
+      const _sy = window.scrollY; window.scrollTo(0, 0);
+      const blob = await window.html2pdf().set({
+        margin:[8,6,8,6], filename: nombre + '.pdf',
+        image:{ type:'jpeg', quality:0.98 },
+        html2canvas:{ scale:2, useCORS:true, backgroundColor:'#ffffff', scrollX:0, scrollY:0 },
+        jsPDF:{ unit:'mm', format:'a4', orientation:'portrait' },
+        pagebreak:{ mode:['css','legacy'], avoid:['tr','.eval-conclusion','.eval-h2','.eval-note','.eval-foot'] }
+      }).from(clone).outputPdf('blob');
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = nombre + '.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+      holder.remove(); window.scrollTo(0, _sy);
+    } catch (e) {
+      alert('No se pudo generar el PDF. Probá con el botón Imprimir y elegí "Guardar como PDF".');
+    } finally {
+      if (btn){ btn.disabled = false; btn.textContent = txt; }
+    }
+  }
+  function imprimirReporte(nombre){
+    const previo = document.title;
+    document.title = nombre;
+    const restaurar = () => { document.title = previo; window.removeEventListener('afterprint', restaurar); };
+    window.addEventListener('afterprint', restaurar);
+    window.print();
+  }
+  window.pdfReporte = (btn) => descargarPDF('report-printable', nombreArchivoReporte(), btn);
+  window.imprimirReporteActual = () => imprimirReporte(nombreArchivoReporte());
 
   // ---------------- PACIENTES: listado, búsqueda, filtro y alta ----------------
   const patientListEl = document.getElementById('patient-list');
@@ -3153,7 +3310,7 @@
         const cambio = i.pts ? `<span class="delta">${fDelta(d,1,'pts')}</span>` : `<span class="delta">${fDelta(d,i.d,i.u)}</span>${pc!=null?`<span class="pct">(${fDelta(pc,1,'%')})</span>`:''}`;
         return `<tr><td class="ind">${i.l}</td><td>${fNum(a,i.d)} ${i.u}</td><td>${fNum(b,i.d)} ${i.u}</td><td>${cambio}</td><td>${sparkline(serie)}</td></tr>`;
       }).join('');
-      resumen = `<table class="eval-sum"><thead><tr><th>Indicador</th><th>${fFechaDMY(primera.fecha)}</th><th>${fFechaDMY(ultima.fecha)}</th><th>Cambio</th><th>Evolución (${total} medic.)</th></tr></thead><tbody>${filasR}</tbody></table>
+      resumen = `<div class="eval-sum-wrap"><table class="eval-sum"><thead><tr><th>Indicador</th><th>${fFechaDMY(primera.fecha)}</th><th>${fFechaDMY(ultima.fecha)}</th><th>Cambio</th><th>Evolución (${total} medic.)</th></tr></thead><tbody>${filasR}</tbody></table></div>
         <div class="eval-h2">Conclusión</div>
         <div class="eval-conclusion" contenteditable="true" spellcheck="true">${textoConclusion(primera.raw, ultima.raw)}</div>
         <p class="eval-edit-hint">Podés hacer clic en la conclusión y editarla antes de imprimir.</p>`;
@@ -3184,7 +3341,9 @@
   function generarEval(){
     const p = pacientesData[document.getElementById('rep-paciente-eval').value];
     if (!p){ reportOutput.innerHTML = `<p class="report-empty">Elegí un paciente para generar la evaluación.</p>`; return; }
-    const footer = `<div class="report-doc-foot"><button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button></div>`;
+    const footer = `<div class="report-doc-foot"><button class="btn btn-primary" type="button" onclick="pdfReporte(this)">Descargar PDF</button>
+          <span class="spacer"></span>
+          <button class="btn btn-ghost" type="button" onclick="imprimirReporteActual()">Imprimir</button></div>`;
     reportOutput.innerHTML = buildEvalDoc(p, footer);
   }
   document.getElementById('rep-generar-eval').addEventListener('click', generarEval);
@@ -3273,7 +3432,9 @@
     const footer = `
         <div class="report-doc-foot">
           <button class="btn btn-ghost" type="button" onclick="document.getElementById('report-output').innerHTML='<p class=&quot;report-empty&quot;>Elegí un paciente y generá el reporte para verlo acá.</p>'">Descartar</button>
-          <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
+          <button class="btn btn-primary" type="button" onclick="pdfReporte(this)">Descargar PDF</button>
+          <span class="spacer"></span>
+          <button class="btn btn-ghost" type="button" onclick="imprimirReporteActual()">Imprimir</button>
         </div>`;
     reportOutput.innerHTML = buildReporteFechaDoc(p, r, 'report-printable', footer);
     reportOutput.scrollIntoView({ behavior:'smooth', block:'nearest' });
@@ -3337,7 +3498,9 @@
         </div>
         <div class="report-doc-foot">
           <button class="btn btn-ghost" type="button" onclick="document.getElementById('report-output').innerHTML='<p class=&quot;report-empty&quot;>Elegí un paciente y generá el reporte para verlo acá.</p>'">Descartar</button>
-          <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
+          <button class="btn btn-primary" type="button" onclick="pdfReporte(this)">Descargar PDF</button>
+          <span class="spacer"></span>
+          <button class="btn btn-ghost" type="button" onclick="imprimirReporteActual()">Imprimir</button>
         </div>
       </div>
     `;
@@ -3423,7 +3586,9 @@
         </div>
         <div class="report-doc-foot">
           <button class="btn btn-ghost" type="button" onclick="document.getElementById('report-output').innerHTML='<p class=&quot;report-empty&quot;>Elegí un paciente y generá el reporte para verlo acá.</p>'">Descartar</button>
-          <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
+          <button class="btn btn-primary" type="button" onclick="pdfReporte(this)">Descargar PDF</button>
+          <span class="spacer"></span>
+          <button class="btn btn-ghost" type="button" onclick="imprimirReporteActual()">Imprimir</button>
         </div>
       </div>
     `;
@@ -3560,6 +3725,9 @@
     cerrarEdicionMedicion();
     await cargarPacientesDesdeSupabase();
     syncPatientCard();
+    limpiarFormularioMedicion();
+    document.getElementById('fecha-eval').value = hoyISO();
+    window.scrollTo({ top:0, behavior:'smooth' });
 
     const msg = document.getElementById('guardado-msg');
     msg.hidden = false;
