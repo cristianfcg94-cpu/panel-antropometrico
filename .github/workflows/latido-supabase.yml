@@ -1,0 +1,18 @@
+name: Latido Supabase (evita que el proyecto se pause)
+
+on:
+  schedule:
+    - cron: '17 12 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  latido:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consulta liviana a Supabase
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: sb_publishable_WgBfTSMQeD6Zjcdosv8dIA_vFAx-asz" \
+            "https://eyrxarlwccgxihchrpar.supabase.co/rest/v1/pacientes?select=id&limit=1")
+          echo "Respuesta de Supabase: $code"
+          test "$code" = "200"
